@@ -3,8 +3,6 @@
     "version": "1.0.0",
     "description": "A real-time messaging and account service",
     "main": "script.osl",
-    "dependencies": {
-        "websocket": "^1.0.0"
-    },
+    "dependencies": {},
     "tags": ["messaging", "realtime", "websockets", "communication", "chat"]
 }

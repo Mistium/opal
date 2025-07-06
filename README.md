@@ -14,7 +14,7 @@
 
 ## 📦 Installation
 
-`opal` comes with originOS v5.7.9 and later, previously it was named `package`
+`opal` comes with originOS v6.0.0 and later, previously it was named `package`
 
 ## 🛠️ Usage
 
