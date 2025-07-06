@@ -1,0 +1,30 @@
+{
+  "title": "rotur",
+  "versions": [
+    {
+      "name": "rotur",
+      "version": "1.0.0",
+      "description": "A real-time messaging and account service",
+      "main": "script.osl",
+      "dependencies": {
+        "websocket": "^1.0.0"
+      },
+      "tags": [
+        "messaging",
+        "realtime",
+        "websockets",
+        "communication",
+        "chat"
+      ],
+      "size": "5 KB",
+      "sizeBytes": 4701
+    }
+  ],
+  "tags": [
+    "messaging",
+    "realtime",
+    "websockets",
+    "communication",
+    "chat"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "glass",
+  "versions": [
+    {
+      "name": "glass",
+      "version": "1.0.0",
+      "description": "A glass transparency effect utility for OSL UI elements with blur and frame rendering.",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "ui",
+        "visual",
+        "effects",
+        "transparency",
+        "graphics"
+      ],
+      "size": "2 KB",
+      "sizeBytes": 1860
+    }
+  ],
+  "tags": [
+    "ui",
+    "visual",
+    "effects",
+    "transparency",
+    "graphics"
+  ]
+}

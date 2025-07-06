@@ -1,0 +1,85 @@
+class sound (
+  id = null
+
+  def new(url) (
+    local val = self
+    // clone the sound object
+
+    local id = ouidNew()
+    sound "load" url id
+    
+    val.id = id
+    return val
+  )
+
+  def start() (
+    if id == null (
+      return
+    )
+    sound id "play"
+  )
+
+  def pause() (
+    if id == null (
+      return
+    )
+    sound id "pause"
+  )
+
+  def unpause() (
+    if id == null (
+      return
+    )
+    sound id "unpause"
+  )
+
+  def unload() (
+    if id == null (
+      return
+    )
+    sound id "clear"
+  )
+
+  set currentTime(time) (
+    if id == null (
+      return
+    )
+    sound id "start" time
+  )
+
+  get currentTime() (
+    if id == null (
+      return
+    )
+    return id.soundinfo("current_time")
+  )
+
+  get loaded() (
+    return id.soundinfo("loaded")
+  )
+
+  get playing() (
+    return id.soundinfo("playing")
+  )
+
+  set volume(value) (
+    if id == null (
+      return
+    )
+    sound id "volume" value
+  )
+
+  get volume() (
+    return id.soundinfo("volume")
+  )
+
+  get duration() (
+    return id.soundinfo("duration")
+  )
+
+  get percent() (
+    return id.soundinfo("current_time") / id.soundinfo("duration")
+  )
+)
+
+self = sound

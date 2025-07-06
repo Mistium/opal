@@ -1,0 +1,28 @@
+{
+  "title": "seeded_random",
+  "versions": [
+    {
+      "name": "seeded_random",
+      "version": "1.0.0",
+      "description": "A seeded random number generator for OSL with predictable, reproducible random sequences.",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "random",
+        "seed",
+        "utility",
+        "math",
+        "deterministic"
+      ],
+      "size": "3 KB",
+      "sizeBytes": 2670
+    }
+  ],
+  "tags": [
+    "random",
+    "seed",
+    "utility",
+    "math",
+    "deterministic"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "sound",
+  "versions": [
+    {
+      "name": "sound",
+      "version": "1.0.0",
+      "description": "A simple sound object wrapper for OSL, supporting playback, pause, volume, and more.",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "audio",
+        "sound",
+        "media",
+        "playback",
+        "utility"
+      ],
+      "size": "3 KB",
+      "sizeBytes": 2757
+    }
+  ],
+  "tags": [
+    "audio",
+    "sound",
+    "media",
+    "playback",
+    "utility"
+  ]
+}

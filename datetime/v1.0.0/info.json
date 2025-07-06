@@ -1,0 +1,8 @@
+{
+    "name": "datetime",
+    "version": "1.0.0",
+    "description": "A comprehensive datetime utility library for OSL with formatting, manipulation, and relative time functionality",
+    "main": "script.osl",
+    "dependencies": {},
+    "tags": ["time", "date", "formatting", "utility", "calendar"]
+}

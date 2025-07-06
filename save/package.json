@@ -1,0 +1,26 @@
+{
+  "title": "save",
+  "versions": [
+    {
+      "name": "save",
+      "version": "1.0.0",
+      "description": "A simple wrapper for the OSL save system, providing easy file-based persistence.",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "storage",
+        "persistence",
+        "file",
+        "utility"
+      ],
+      "size": "2 KB",
+      "sizeBytes": 1976
+    }
+  ],
+  "tags": [
+    "storage",
+    "persistence",
+    "file",
+    "utility"
+  ]
+}

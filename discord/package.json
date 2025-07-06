@@ -1,0 +1,28 @@
+{
+  "title": "discord",
+  "versions": [
+    {
+      "name": "discord",
+      "version": "2.0.0",
+      "description": "Discord bot integration for OSL with message handling, commands, and real-time communication.",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "bot",
+        "messaging",
+        "api",
+        "social",
+        "communication"
+      ],
+      "size": "6 KB",
+      "sizeBytes": 5640
+    }
+  ],
+  "tags": [
+    "bot",
+    "messaging",
+    "api",
+    "social",
+    "communication"
+  ]
+}

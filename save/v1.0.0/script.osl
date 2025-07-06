@@ -1,0 +1,29 @@
+self.saveContents = saveContents
+
+def init(directory) (
+  save directory "set_directory"
+)
+
+def setItem(filename, value) (
+  save filename "set" value
+)
+
+def all() (
+  return self.saveContents()
+)
+
+def getItem(filename) (
+  if filename.contains(".").not() (
+    filename.append(".txt")
+  )
+  local exists = filename.saveExists()
+  local data = exists ? filename.saveGet() ""
+  local size = data.len
+  
+  return {
+    filename,
+    exists,
+    data,
+    size
+  }
+)

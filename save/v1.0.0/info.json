@@ -1,0 +1,8 @@
+{
+    "name": "save",
+    "version": "1.0.0",
+    "description": "A simple wrapper for the OSL save system, providing easy file-based persistence.",
+    "main": "script.osl",
+    "dependencies": {},
+    "tags": ["storage", "persistence", "file", "utility"]
+}

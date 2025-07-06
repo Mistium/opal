@@ -1,0 +1,118 @@
+self.token = ""
+self.heartbeat_msg = {"op":1,"d":null}
+self.last_heartbeat = timer + 41.25
+self.discord = ""
+self.bot = {}
+
+proxy = "https://apps.mistium.com/cors?url="
+
+self.guilds = []
+self.commands = {}
+
+window "responsive" true
+// make the window run even when unfocused
+
+def "login" "this.token" (
+  self.discord = "gateway.discord.gg/?v=9&encoding=json:443".newWebsocket()
+
+  status = "online"
+  
+  self.token = this.token.destr
+  self.last_heartbeat = timer + 41.25
+)
+
+def senderOf(this.msg) (
+  return this.msg.d.author.username
+)
+
+def connection() (
+  return self.discord
+)
+
+def sendmessage(this.content,this.channel) (
+  this.url = ("https://apps.mistium.com/send-discord-message?token=" ++ self.token ++ "&channelid=" ++ this.channel ++ "&content=" ++ encodeURIComponent(this.content)).getAsync()
+)
+
+def "send_message" "this.content, this.channel" (
+  return self.sendmessage(this.content,this.channel)
+)
+
+def pfpOf(this.msg) (
+  this.au = this.msg.d.author
+  return proxy ++ "https://cdn.discordapp.com/avatars/" ++ this.au.id ++ "/" ++ this.au.avatar ++ ".png"
+)
+
+def myself() (
+  return self.user
+)
+
+def guilds() (
+  return self.guilds
+)
+
+def "register" "command,func" (
+  self.commands[command] = func
+)
+
+def "run" (
+  if self.last_heartbeat < timer (
+    self.last_heartbeat = timer + 41.25
+    this.discord = self.discord.wsSend(self.heartbeat_msg)
+  )
+
+  if self.discord.wsHasnew() (
+    this.msg = self.discord.wsGetnext()
+    if this.msg.isType("object").not (
+      return
+    )
+    this.cmd = this.msg.t
+    switch this.cmd (
+      case ""
+        if this.msg.op != 10 (
+          return
+        )
+
+        base = {
+          "op":2,
+          "d":{
+            "token":"",
+            "intents":4194303,
+            "properties":{
+              "$os":"originOS",
+              "$browser":"Chrome",
+              "$device":"MacIntel"
+            }
+          },
+          "s":null,
+          "t":null
+        }
+
+        base.d.token = self.token
+        this.out = self.discord.wsSend(base)
+        base.d.token = ""
+  
+        break
+      case "ready"
+        self.bot = this.msg.d.user
+        self.bot.avatar_url = "https://cdn.discordapp.com/avatars/" ++ self.bot.id ++ "/" ++ self.bot.avatar ++ ".png"
+        break
+      case "MESSAGE_CREATE"
+        this.d = this.msg.d
+        this.content = this.d.content
+        
+        each this.command self.commands.getKeys() (
+          if this.content.startsWith(this.command) (
+            this.content = this.content.trim(this.command.len + 1,-1).strip()
+            this.command = self.commands[this.command]
+            
+            this.content = this.command(this.content,this.d)
+            if this.content.len > 0 (
+              this.out = self.sendmessage(this.content,this.d.channel_id)
+            )
+            return
+          )
+        )
+        break
+    )
+  )
+)
