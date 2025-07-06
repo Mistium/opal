@@ -1,0 +1,65 @@
+self.console = []
+self.width = 0
+
+window "show"
+window "dimensions" 800 550
+
+def log(data) (
+  self.console = self.console.append(data)
+)
+
+def replace_line(line, data) (
+  self.console[line] = data
+)
+
+def remove_line(line) (
+  self.console = self.console.delete(line)
+)
+
+def clear() (
+  self.console = []
+)
+
+def run_ui() (
+
+  this.prim = user.theme.primary
+  this.txt = user.theme.text
+  c this.prim
+  frame frame.left frame.top - 40 frame.right frame.bottom self.console.len * 20 "console_main" (
+    c this.txt
+    count = round(scroll_yconsole_main / 20)
+    loc 2 2 10 -20 + (scroll_yconsole_main % 20)
+    x = frame.left + 10
+    loop floor(frame.height / 20) (
+      count ++
+      loc 2 2 10 scroll_yconsole_main - (20 * count)
+      text self.console[count] 10
+    )
+  )
+
+  loc 999 2 0 -20
+  square frame.width 30 10 : c#this.prim
+
+  loc 2 2 10 -20
+  text self.title 10 : c#this.txt
+
+  loc -2 2 -20 -20
+  icon "close" 0.7
+  if clicked (
+    self.width = 0
+  )
+)
+
+def mainloop(callback) (
+  if "shift".isKeyDown() and "control".isKeyDown() and "c".onKeyDown() (
+    self.width = 300 - self.width
+  )
+  frame window.left window.top window.right - self.width window.bottom (
+    callback()
+  )
+  if self.width > 0 (
+    frame window.right - self.width window.top window.right window.bottom (
+      self.run_ui()
+    )
+  )
+)

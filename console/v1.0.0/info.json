@@ -1,0 +1,8 @@
+{
+    "name": "console",
+    "version": "1.0.0",
+    "description": "A debugging console utility for OSL applications with logging, scrolling, and toggle functionality.",
+    "main": "script.osl",
+    "dependencies": {},
+    "tags": ["debug", "console", "logging", "development", "utility"]
+}
