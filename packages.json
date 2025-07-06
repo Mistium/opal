@@ -3,6 +3,34 @@
   "description": "Official package registry for the OSL programming language",
   "packages": [
     {
+      "title": "console",
+      "versions": [
+        {
+          "name": "console",
+          "version": "1.0.0",
+          "description": "A debugging console utility for OSL applications with logging, scrolling, and toggle functionality.",
+          "main": "script.osl",
+          "dependencies": {},
+          "tags": [
+            "debug",
+            "console",
+            "logging",
+            "development",
+            "utility"
+          ],
+          "size": "3 KB",
+          "sizeBytes": 3405
+        }
+      ],
+      "tags": [
+        "debug",
+        "console",
+        "logging",
+        "development",
+        "utility"
+      ]
+    },
+    {
       "title": "datetime",
       "versions": [
         {
