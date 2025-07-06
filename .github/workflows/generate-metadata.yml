@@ -10,6 +10,8 @@ on:
 jobs:
   generate-metadata:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout repository
@@ -33,4 +35,5 @@ jobs:
         else
           git commit -m "Auto-generate package metadata [skip ci]"
           git push
-        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
