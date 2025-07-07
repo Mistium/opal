@@ -1,38 +1,5 @@
 {
-  "packages": [
-    {
-      "name": "console",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "datetime",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "discord",
-      "latestVersion": "2.0.0"
-    },
-    {
-      "name": "glass",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "rotur",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "save",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "seeded_random",
-      "latestVersion": "1.0.0"
-    },
-    {
-      "name": "sound",
-      "latestVersion": "1.0.0"
-    }
-  ],
-  "count": 8,
-  "lastUpdated": "2025-07-07T13:49:18.681Z"
+  "packages": [],
+  "count": 0,
+  "lastUpdated": "2025-07-07T15:44:06.153Z"
 }
