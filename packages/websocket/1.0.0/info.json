@@ -1,0 +1,8 @@
+{
+    "name": "websocket",
+    "version": "1.0.0",
+    "description": "WebSocket library for OSL, wrapper to make WebSocket connections easier to handle",
+    "main": "script.osl",
+    "dependencies": {},
+    "tags": []
+}

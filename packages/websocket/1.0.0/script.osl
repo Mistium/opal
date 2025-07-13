@@ -1,0 +1,89 @@
+class websocket_instance (
+    url = ""
+    socketID = ""
+    connected = false
+    onOpen = ()->()
+    onMessage = ()->()
+    onClose = ()->()
+    onError = ()->()
+    opened = false
+
+    def open() (
+        if self.connected (
+            return
+        )
+        self.socketID = self.url.newWebsocket()
+        self.connected = true
+    )
+
+    def close() (
+        if !self.connected (
+            return
+        )
+        self.socketID.wsClose()
+        self.connected = false
+    )
+
+    def send(data) (
+        if !self.connected (
+            return
+        )
+        self.socketID.wsSend(data)
+    )
+)
+
+class websocket (
+    connections = []
+
+    def new(url) (
+        // clone the websocket_instance object
+        websocket = websocket_instance
+        websocket.url = url
+        void connections.append(websocket)
+    )
+
+    def close_all() (
+        for conn in connections (
+            conn.disconnect()
+        )
+    )
+)
+
+
+window.on("after_frame", def() -> (
+    // frame loop for handling websocket stuff lol
+    local conns @= websocket.connections
+    for i conns.len (
+        try (
+            local conn = conns[i]
+            local id = conn.socketID
+            // if the connection is dead
+            if !id.wsOpen() (
+                conn.onClose()
+                conn.connected = false
+                conn.opened = false
+                conn.socketID = ""
+                continue
+            )
+
+            // handle open event
+            if !conn.opened and id.wsIsOpen() and conn.onOpen != null (
+                conn.onOpen(conn)
+                conn.opened = true
+            )
+
+            if conn.onMessage != null (
+                // handle messages
+                while id.wsHasnext() (
+                    local message = id.wsGetnext()
+                    conn.onMessage(conn, message)
+                )
+            )
+        ) catch e (
+            error "WebSocket error: " + e.message
+        )
+    )
+))
+
+// expose the websocket class to the import context
+self = websocket
