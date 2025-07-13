@@ -28,7 +28,7 @@ function formatSize(bytes) {
 }
 
 function generatePackageMetadata() {
-  const packagesDir = '.';
+  const packagesDir = './packages';
   const packages = {};
   const repoMetadata = {
     name: "Opal Package Registry",
@@ -37,6 +37,12 @@ function generatePackageMetadata() {
   };
   
   try {
+    // Check if packages directory exists
+    if (!fs.existsSync(packagesDir)) {
+      console.error(`Packages directory ${packagesDir} does not exist`);
+      process.exit(1);
+    }
+    
     const items = fs.readdirSync(packagesDir, { withFileTypes: true });
     
     for (const item of items) {
