@@ -1,43 +1,43 @@
-class websocket_instance (
-    url = ""
-    socketID = ""
-    connected = false
-    onOpen = ()->()
-    onMessage = ()->()
-    onClose = ()->()
-    onError = ()->()
-    opened = false
-
-    def open() (
-        if self.connected (
-            return
-        )
-        self.socketID = self.url.newWebsocket()
-        self.connected = true
-    )
-
-    def close() (
-        if !self.connected (
-            return
-        )
-        self.socketID.wsClose()
-        self.connected = false
-    )
-
-    def send(data) (
-        if !self.connected (
-            return
-        )
-        self.socketID.wsSend(data)
-    )
-)
-
 class websocket (
     connections = []
 
+    class websocket_instance (
+        url = ""
+        socketID = ""
+        connected = false
+        onOpen = ()->()
+        onMessage = ()->()
+        onClose = ()->()
+        onError = ()->()
+        opened = false
+
+        def open() (
+            if self.connected (
+                return
+            )
+            self.socketID = self.url.newWebsocket()
+            self.connected = true
+        )
+
+        def close() (
+            if !self.connected (
+                return
+            )
+            self.socketID.wsClose()
+            self.connected = false
+        )
+
+        def send(data) (
+            if !self.connected (
+                return
+            )
+            self.socketID.wsSend(data)
+        )
+    )
+
     def new(url) (
         // clone the websocket_instance object
-        websocket = websocket_instance
+        websocket = self.websocket_instance
         websocket.url = url
         void connections.append(websocket)
     )
