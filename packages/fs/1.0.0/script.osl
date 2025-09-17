@@ -1,0 +1,109 @@
+class _file (
+def init(path) (
+    self.init = null
+    self._path = path
+    local data = open(self._path, ["name", "type", "uuid", "permissions", "icon"])
+    log data self._path
+    self.name = data[1] ++ data[2]
+    self._id = data[3]
+    self.permissions = data[4]
+    file "close"
+    return self.clone()
+)
+
+def read() (
+    local value @= open(self._id)
+    file "close"
+    return value
+)
+
+def rename(name) (
+    name = name.toStr()
+    if name.contains("/") or name.len == 0 (
+    throw "error" "Invalid File Name"
+    )
+    name = name.split(".")
+    if name.len != 2 (
+    throw "error" "Invalid File Name"
+    )
+    file "open" self._id "onlyaccess"
+    file "set" 2 name[1]
+    file "set" 1 name[2]
+    file "close"
+    self.name = name.join(".")
+)
+
+def write(value) (
+    file "open" self._id "onlyaccess"
+    file "set" 4 value.toStr()
+    file "close"
+)
+
+def newline(value) (
+    value = open(self._id).toStr() ++ "\n" ++ value.toStr()
+    file "set" 4 value
+    file "close"
+)
+
+def append(value) (
+    value = open(self._id).toStr() ++ value.toStr()
+    file "set" 4 value
+    file "close"
+)
+
+def prepend(value) (
+    value = value.toStr() ++ open(self._id).toStr()
+    file "set" 4 value
+    file "close"
+)
+
+def close() (
+    self = {}
+)
+)
+
+def open(path) (
+log path parseFilePath(path) window.wd
+return _file(parseFilePath(path))
+)
+
+def ls() (
+local files @= listFiles()
+for i files.len (
+    local cur @= files[i]
+    if cur.endsWith(".folder") (
+    files[i] = {
+        dir: true,
+        name: cur.trim(1,-8)
+    }
+    ) else (
+    files[i] = {
+        dir: false,
+        name: cur
+    }
+    )
+)
+return files
+)
+
+def cd(path) (
+file "goto_dir" path
+)
+
+def mkdir(name) (
+name = name.toStr()
+if name.contains(".") or name.contains("/") or name.len == 0 (
+    throw "error" "Invalid Folder Name"
+)
+file "set_file" name ++ ".folder"
+return fs.open(name ++ ".folder")
+)
+
+def mkfile(name) (
+    name = name.toStr()
+    if !name.contains(".") or name.contains("/") or name.len == 0 (
+    throw "error" "Invalid File Name"
+    )
+    file "set_file" name ""
+    return fs.open(name)
+)

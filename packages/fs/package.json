@@ -1,0 +1,26 @@
+{
+  "title": "fs",
+  "versions": [
+    {
+      "name": "fs",
+      "version": "1.0.0",
+      "description": "File system library for OSL, providing utilities for file and directory manipulation",
+      "main": "script.osl",
+      "dependencies": {},
+      "tags": [
+        "file",
+        "system",
+        "utilities",
+        "manipulation"
+      ],
+      "size": "2 KB",
+      "sizeBytes": 2398
+    }
+  ],
+  "tags": [
+    "file",
+    "system",
+    "utilities",
+    "manipulation"
+  ]
+}
